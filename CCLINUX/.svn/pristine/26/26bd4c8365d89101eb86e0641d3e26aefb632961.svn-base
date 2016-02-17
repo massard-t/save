@@ -1,0 +1,15 @@
+#!/usr/bin/python3.4
+from uuid import getnode
+import os
+import time
+import tarfile
+import re
+import sys
+import hashlib
+
+def make_tarfile(source_dir):
+	with tarfile.open("export.tar", "w:gz") as tar:
+		tar.add(source_dir, arcname=os.path.basename(source_dir))
+
+if __name__ == '__main__':
+	make_tarfile(sys.argv[1])

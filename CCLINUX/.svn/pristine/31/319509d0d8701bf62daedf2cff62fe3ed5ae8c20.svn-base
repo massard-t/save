@@ -1,0 +1,10 @@
+#!/usr/bin/python3.4
+from crontab import *
+
+
+tab = crontab.crontab(user='massar_t')
+cmd = '/usr/bin/python3.4 /var/www/CC/scripts/printtest.py'
+job = Crontab.new(command='/user/bin/python3.4', comment="test")
+job.minute().every(5)
+tab.write()
+print(tab.render())

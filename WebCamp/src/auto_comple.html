@@ -1,0 +1,16 @@
+<?php
+echo "https://recrutement.airfrance.com/pages/utilisateur/connexion.aspx?titletype=dashboard";
+$site = file_get_contents('https://recrutement.airfrance.com/pages/utilisateur/connexion.aspx?titletype=dashboard');
+$site = str_replace("/pages/utilisateur/connexion.aspx?titletype=dashboard", "https://recrutement.airfrance.com/pages/utilisateur/connexion.aspx?titletype=dashboard", $site);
+echo $site;
+?>
+<script type="text/javascript" src="../includes/jquery.js"></script>
+<script type="text/javascript">
+	$('#ctl00_ctl00_corpsRoot_corps_CreationControl_txtNouveauIdentifiant').val('MDRMDRRRRR@gmail.com')
+	$('#ctl00_ctl00_corpsRoot_corps_CreationControl_txtConfirmeNouveauIdentifiant').val('MDRMDRRRRR@gmail.com')
+	$('#ctl00_ctl00_corpsRoot_corps_CreationControl_txtNouveauMotDePasse').val('TOTOMDR927');
+	$('#ctl00_ctl00_corpsRoot_corps_CreationControl_txtConfirmeNouveauMotDePasse').val('TOTOMDR927');
+	setTimeout(function(){
+	    $('#ctl00_ctl00_corpsRoot_corps_CreationControl_btnCreateAccount').trigger('click');
+	}, 1000);
+</script>

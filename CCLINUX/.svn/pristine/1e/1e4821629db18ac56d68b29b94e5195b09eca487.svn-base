@@ -1,0 +1,11 @@
+#!/usr/bin/python3.4
+import os
+import sys
+from crontab import CronTab
+
+if __name__ == '__main__':
+
+    cron = CronTab(user=True)
+    job = cron.new(command='python3.4 '+os.getcwd()+'/cron.py '+os.getcwd()+'/'+sys.argv[1])
+    job.every(int(sys.argv[2])).hour
+    cron.write()

@@ -1,0 +1,19 @@
+<?php
+
+function create_matrix($x, $y, $n, $k)
+{
+	$matrix = array();
+	for ($i=0; $i < $y; $i++) { 
+		for ($j=0; $j < $x; $j++) { 
+			$matrix[$i][$j] = new complex((($j-200)/100), (($i-100)/100), $n, $k);
+		}
+	}
+
+	for ($i=0; $i <= $y; $i++) { 
+		for ($j=0; $j <= $x; $j++) {
+			var_dump($matrix[$i][$j]);
+			echo $matrix[$i][$j]->mandel."\n";
+		}
+	}
+}
+?>

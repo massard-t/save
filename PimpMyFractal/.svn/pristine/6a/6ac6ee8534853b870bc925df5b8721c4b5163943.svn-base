@@ -1,0 +1,36 @@
+<?php
+function create_image($x, $y)
+{
+	$base = imagecreatetruecolor($x, $y);
+	return ($base);
+}
+
+function get_image($matrix)
+{
+	$imag = create_image($matrix->x, $matrix->y);
+	return ($imag);
+}
+
+function draw_mandel($matrix, $base)
+{
+	$x = -1;
+	$y = -1;
+	while (++$y < $matrix->y) {
+		while (++$x < $matrix->x){
+			echo "||";
+
+			// echo $matrix->rows[$x][$y]->mandel."<br>";
+			// echo $matrix->rows[$x][$y]->aff_simple()."<br>";
+			var_dump($matrix->rows[$x][$y]);
+			$percent = $matrix->rows[$x][$y]->mandel;
+			$color = imagecolorallocate($base, $percent, $percent, $percent);
+			imagesetpixel ($base, $x + 1, $y + 1, $color);
+		}
+		echo "<br>";
+		$x = 0;
+	}
+	imagepng($base , "images/image.png");
+	imagedestroy($base);
+}
+
+?>

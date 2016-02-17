@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="fr" xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head xmlns=""><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Prep'ETNA - Sélection</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/monokai-sublime.min.css">
+	<link rel="stylesheet" href="https://intra.etna-alternance.net/css/sujet-html-prep-new.css">
+	<style>
+		.fa {
+			color: white;
+			font-size: 38px;
+			vertical-align: middle;
+			padding-bottom: 15px;
+		}
+	</style>
+</head>
+<body xmlns="">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<i class="fa fa-info-circle"></i>
+			<h1>Consignes</h1>
+		</div>
+		<div class="panel-body">
+			<ul>
+				<li>Internet est autorisé. Il sera même votre meilleur ami !</li>
+				<li>Si vous pensez avoir fait une bêtise irréversible, contactez un asset.</li>
+				<li>Vous êtes bloqué ? Avez-vous pensé à chercher correctement ? Si oui, et que vous bloquez toujours, contactez un asset. Comme on le dit, mieux vaut être bête 5 minutes que toute sa vie !</li>
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<i class="fa fa-file-text-o"></i>
+			<h3>Exercice 4 :</h3>
+			<p>Multi add</p>
+		</div>
+		<div class="panel-body">
+			Voici un début de programme :
+			<pre>
+				<code class="Go">
+					package main
+
+					import "fmt"
+
+					func multi_addi(a int, b int, z int){
+						// écrivez votre code à partir d'ici
+					}
+
+					func main(){
+						multi_addi(8, 4, 10);
+					}
+				</code>
+			</pre>
+			Complétez ce programme pour qu'il affiche le produit et l'addition de multi_addit(a, b, z), suivi d'un saut à la ligne. Ici, cela va nous afficher "42" puis un saut à la ligne. Si on remplace la valeur de a, b et, cela va remplacer "42" par la nouvelle valeur de multi_addi.
+		</div>
+	</div>
+	<div class="panel panel-danger">
+		<div class="panel-heading">
+			<i class="fa fa-exclamation-triangle"></i>
+			<h2>Validation</h2>
+		</div>
+		<div class="panel-body">
+		<p>Pour faire valider cet exercice, appelez un asset et montrez lui où se trouvent les fichiers hello.</p>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function() {
+		$('code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+	</script>
+</body>
+</html>

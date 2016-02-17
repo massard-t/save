@@ -1,0 +1,25 @@
+import requests
+import sys
+import hashlib
+
+
+def md5(fname):
+    hash = hashlib.md5()
+    with open(fname, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash.update(chunk)
+    with open(fname, "rb") as f:
+    	content = f.read()
+    return (hash.hexdigest(), content)
+
+
+def send_file(fname):
+    multiple_files =[(fname, ('file',(open(fname, 'r').read()))),
+                              (fname, ('file',(open(fname, 'r').read())))]
+    file={'file':(open(fname,'r').read())}
+    url='http://92.222.227.175:1234/main.php'
+    response = requests.post(url, files=multiple_files)
+    print(response.text)
+
+if __name__ == '__main__':
+    send_file(sys.argv[1])

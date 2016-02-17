@@ -1,0 +1,65 @@
+<?php
+function create_img($base, $images) {
+	
+	if (count($images) > 1) {
+		echo count($images) . "images trouvées";
+	} else {
+		echo count($images) . "image trouvée";
+	}
+	
+	$panel = imagecreatetruecolor(1200, 1000);
+
+	$x = 0;
+	$y = 0;
+	$c = 1;
+	$max_width = 0;
+	$max_height = 0;
+
+	for ($i = 0; $i < count($test); $i++) {
+		$key = array_keys($test[$i]);
+		if ($y + imagesy($test[$i][$key[0]]) <= 1000) {
+			if (imagesy($test[$i][$key[0]]) > 250) {
+				imagecopyresized($panel, $test[$i][$key[0]], $x, $y, 0, 0, imagesx($test[$i][$key[0]]) / 4, 250, imagesx($test[$i][$key[0]]), imagesy($test[$i][$key[0]]));
+				if ($x + (imagesx($test[$i][$key[0]]) / 4) * 2 >= 1200) {
+					if ($max_width < (imagesx($test[$i][$key[0]]) / 4)) {
+						$max_width = $x + imagesx($test[$i][$key[0]]);
+					}
+					$x = 0;
+					$y += 250;
+				} else {
+					$x += (imagesx($test[$i][$key[0]]) / 4);
+				}
+			} else {
+				imagecopy($panel, $test[$i][$key[0]], $x, $y, 0, 0, imagesx($test[$i][$key[0]]), imagesy($test[$i][$key[0]]));
+				if ($x + imagesx($test[$i][$key[0]]) * 2 >= 1200) {
+					if ($max_width < (imagesx($test[$i][$key[0]]) / 4)) {
+						$max_width = $x + imagesx($test[$i][$key[0]]);
+					}
+					$x = 0;
+					$y += 250;
+				} else {
+					$x += imagesx($test[$i][$key[0]]);
+				}
+			}
+		} else {
+			$y = 0;
+			$final = imagecreatetruecolor($max_width, 1000);
+			imagecopy($final, $panel, 0, 0, 0, 0, $max_width, 1000);
+			imagejpeg($panel, $base . $c);
+			imagejpeg($final, $base . $c);
+			imagedestroy($final);
+			imagedestroy($panel);
+			$panel = imagecreatetruecolor(1200, 1000);
+			$i--;
+			$c++;
+		}
+	}
+	$max_height = $x*2.5;
+	$final = imagecreatetruecolor(1200, $max_height);
+	imagecopy($final, $panel, 0, 0, 0, 0, 1200, $max_height);
+	imagejpeg($panel, $base . $c);
+	imagejpeg($final, $base . $c);
+	imagedestroy($final);
+	imagedestroy($panel);
+}
+?>

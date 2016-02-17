@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bonanza</title>
+<script>
+function showRSS(str) {
+  if (str.length==0) {
+    document.getElementById("rssOutput").innerHTML="";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  } else {  // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      document.getElementById("rssOutput").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","getrss.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<form>
+<select onchange="showRSS(this.value)">
+<!--   <input type="checkbox" name="informatique-telecom-internet" id="">
+  <input type="checkbox" name="administration-services-generaux" id="">
+  <input type="checkbox" name="audit-conseil" id="">
+ -->
+<option value="">Select an RSS-feed:</option>
+<option value="administrationservicesgeneraux">administration services generaux</option>
+<option value="artsplastiquescinemamusique">arts plastiques cinema musique</option>
+<option value="conseilaudit">conseil audit</option>
+<option value="constructionbtp">construction btp</option>
+<option value="distributioncommerce">distribution commerce</option>
+<option value="energieenvironnement">energie environnement</option>
+<option value="immobilier">immobilier</option>
+<option value="industriestransport">industries transport</option>
+<option value="informatiquetelecominternet">informatique telecom internet</option>
+<option value="marketingcommunication">marketing communication</option>
+<option value="mediapress">media press</option>
+<option value="santemedicalsocialpharmacie">sante medical social pharmacie</option>
+<option value="servicesalapersonne">services a la personne</option>
+<option value="servicesauxentreprisescollectivites">services aux entreprises collectivites</option>
+<option value="servicespublicsadministration">services publics administration</option>
+<option value="tourismehotellerierestauration">tourisme hotellerie restauration</option>
+<!-- <option value=""></option> -->
+</select>
+</form>
+<br />
+<div id="rssOutput">RSS-feed will be listed here...</div>
+</body>
+</html> 
+</body>
+</html>

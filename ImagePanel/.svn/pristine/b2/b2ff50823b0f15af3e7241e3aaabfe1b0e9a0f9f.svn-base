@@ -1,0 +1,36 @@
+I recuperation code
+- URL
+- Chemin local
+
+II parsing du code
+- Regex
+- transfert des urls à V
+
+III interface utilisation
+- options
+- gestion d'erreurs *FINI*
+- parametres *FINI*
+
+IV creation image
+- creation de la ressource *FINI*
+- image de base *FINI*
+
+V recuperation images
+- recupérer via l'url / chemin local
+- tranformer images en ressources
+- garder dimensions, formater si nécessaire
+
+VI collage
+- ajouter ressources à IV
+- redimensioner si nécessaire
+
+VII fin du script
+- creation image (au format choisi)
+- texte de fin de script si nécessaire
+
+/!\ Gestion d'erreurs pour chaque étape + libérer les ressources
+
+OPTIONNEL
+- interface utilisateur sympas
+- options de ligne de commande supplémentaire ?
+- 

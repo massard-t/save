@@ -1,0 +1,48 @@
+<?php
+require_once 'main.php';
+require_once 'sorts.php';
+require_once 'errors.php';
+require_once 'functions.php';
+require_once 'test2.php';
+
+function main_test($argv)
+{
+	if ($argv[3])
+		$max = $argv[3];
+	else
+		$max = 1;
+	$i = 0;
+	$time_start_fi = microtime(true);
+	while ($i < $max) {
+		$res2 = my_main($argv, "fi");
+		$i++;
+	}
+	$disp = '';
+	$size = sizeOf($res2);
+	for ($i=0; $i < $size ; $i++) { 
+		$disp = $disp . $res2[$i];
+	}
+	echo $disp;
+	// var_dump($res1 == $res2);
+	echo "\nFi done\n";
+	$time_end_fi = microtime(true);
+	// echo '--------------- time while: ',(($time_end_wi - $time_start_wi)/($max)),"\n";
+	echo '--------------- time fi   : ',(($time_end_fi - $time_start_fi)/($max)),"\n";
+	echo $time / $max ,"\n";
+	// $fi = $time_end_fi - $time_start_fi;
+	// $wi = $time_end_wi - $time_start_wi;
+	// var_dump($wi > $fi);
+	// echo ($time_end_wi - $time_start_wi) >
+	echo "\n".$time_end - $time_start."\n";
+}
+
+main_test($argv);
+	// echo '--------------- time for  : ',(($time_end_fe - $time_start_fe)/($max)),"\n";
+// 	$time_start_fe = microtime(true);
+// 	while ($i < $max) {
+// 		$time = $time + my_main($argv, "fe");
+// 		$i++;
+// 	}
+// 	$time_end_fe = microtime(true);
+// 	echo 'Fe done',"\n";
+?>

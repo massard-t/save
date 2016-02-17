@@ -1,0 +1,35 @@
+<?php
+
+function cleandata($data)
+{
+	echo "test";
+	print_r($data);
+	$i = 0;
+	while (isset($data[$i])) {
+		if (!(preg_match("/(height=\".+?\"|width=\".+?\"|src=\".+?\")/", $data[$i])))
+			unset($data[$i]);
+		$i++;
+		}
+	return $data;
+}
+function img_to_resource($path, $value)
+{
+
+}
+
+function get_type($source)
+{
+	$choices = [IMAGETYPE_GIF 	=> "gif", 
+				IMAGETYPE_JPEG 	=> "jpg",
+				IMAGETYPE_PNG 	=> "png",
+				IMAGETYPE_BMP 	=> "bmp",
+				IMAGETYPE_WBMP 	=> "wbmp",
+				IMAGETYPE_XBM 	=> "xbm"];
+	foreach ($choices as $key => $value) {
+		if (exif_imagetype($source) == $key)
+			return("$value\n");
+	}
+	return(false);
+}
+
+?>

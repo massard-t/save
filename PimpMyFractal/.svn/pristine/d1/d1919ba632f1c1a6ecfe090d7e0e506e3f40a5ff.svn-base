@@ -1,0 +1,65 @@
+<?php
+function create_image($x, $y)
+{
+	$base = imagecreatetruecolor($x, $y);
+	return ($base);
+}
+
+function get_image($matrix)
+{
+	$imag = create_image($matrix->x, $matrix->y);
+	return ($imag);
+}
+
+function generate_tab(){
+	for ($x=0; $x < 640; $x++) {
+		for ($y=0; $y < 480; $y++) {
+			$tab[$x][$y] = rand(0,255);
+		}
+	}
+	return $tab;
+}
+
+function draw_image()
+{
+	$x = -1;
+	$y = -1;
+	$tab = generate_tab();
+	$base = imagecreatetruecolor(count($tab), count($tab[0]));
+	while (isset($tab[++$x])) {
+		while (isset($tab[$x][++$y])){
+			$prct = $tab[$x][$y];
+			echo $prct."<br/>";
+			$color = imagecolorallocate($base, $prct, $prct, $prct);
+			imagesetpixel ($base, $x + 1, $y + 1, $color);
+		}
+		$y = 0;
+	}
+	imagepng($base , "images/mdr.png");
+	imagedestroy($base);
+}
+
+function draw_mandel($matrix, $base)
+{
+	$x = -1;
+	$y = -1;
+	while (++$y < $matrix->y) {
+		while (++$x < $matrix->x){
+			echo "||";
+			// echo $matrix->rows[$x][$y]->mandel."<br>";
+			// echo $matrix->rows[$x][$y]->aff_simple()."<br>";
+			var_dump($matrix->rows[$x][$y]);
+			$prct = $matrix->rows[$x][$y]->mandel;
+			$color = imagecolorallocate($base, $prct, $prct, $prct);
+			imagesetpixel ($base, $x + 1, $y + 1, $color);
+		}
+		echo "<br>";
+		$x = 0;
+	}
+	imagepng($base , "images/image.png");
+	imagedestroy($base);
+}
+
+draw_image();
+
+?>

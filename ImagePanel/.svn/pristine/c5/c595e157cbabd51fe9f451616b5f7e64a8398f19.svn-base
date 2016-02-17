@@ -1,0 +1,95 @@
+<?php
+function cleandata($data)
+{
+	echo "cleandata\n";
+	// print_r($data);
+	$i = 0;
+	while (isset($data[$i])) {
+		if (!(preg_match("/(height=\".+?\"|width=\".+?\"|src=\".+?\")/", $data[$i])))
+			unset($data[$i]);
+		$i++;
+		}
+	return ($data);
+}
+
+function img_to_resource($array)
+{
+	print_r($array);
+	$i = 0;
+	echo "test\n";
+	while (isset($array[$i])) {
+		foreach ($array[$i] as $file => $extension) {
+			$ptr = "imagecreatefrom" . $extension;
+			if (function_exists($ptr)){
+				$ressources[$file] = $ptr($file);
+				echo "IT WORKS.\n";
+			}
+		}
+	$i++;
+	}
+	$i = 0;
+	foreach ($ressources as $name => $ress) {
+		$final[$i++] = array($name => $ress);
+	}
+	create_img($final);
+}
+
+function check_absolute($source, $url)
+{
+	$i = 0;
+	// print_r($source);
+	// print_r($source);
+	while (isset($source[$i])) {
+		if (preg_match("/http[s]?:\/\//", $source[$i][1])) {
+			preg_match("/src=\"(.+?)\"/", $source[$i][1], $source[$i]);
+			echo $source[$i][1]."\n";
+			$source[$i] = $source[$i][1];
+		}
+		else {
+			// $url = preg_replace("\w+://\w+.\w+", "", $url);
+			// var_dump($url);
+			$tmp = parse_url($url);
+			$source[$i] = $tmp["scheme"]."://".$tmp["host"].substr($source[$i][1], 1);
+			// return($location);
+			echo $source[$i][1]."\n";
+		}
+		echo "$source[$i]\n";
+		$i++;
+	}
+	echo "sources trouvees\n";
+	return (get_type($source));
+}
+
+function get_type($source)
+{
+	$choices = [IMAGETYPE_GIF 	=> "gif", 
+				IMAGETYPE_JPEG 	=> "jpeg",
+				IMAGETYPE_PNG 	=> "png",
+				IMAGETYPE_BMP 	=> "bmp",
+				IMAGETYPE_WBMP 	=> "wbmp",
+				IMAGETYPE_XBM 	=> "xbm"];
+	echo "Debut Obtention type\n Source valide ?";
+	$i = 0;
+	$j = 0;
+
+	while (isset($source[$i])) {
+		// var_dump($source[$i]);
+		echo "\nCHECK HOST NO WORK?\n";
+		if (check_host($source[$i])) {
+			echo "no it works\n";
+			foreach ($choices as $key => $value) {
+				echo "avant exif\n";
+				if (exif_imagetype($source[$i]) == $key)
+						$final[$j] = array($source[$i] => $value);
+			}
+		}
+		$j++;
+		echo $i++."\n";
+	}
+	print_r($source);
+	print_r($final);
+	echo count($source)."\n";
+	echo "fini\n";
+	img_to_resource($final);
+}
+?>

@@ -1,0 +1,5 @@
+1 - interface
+entree utilisateur
+gestion d'erreur
+
+2 - gestion du dictionnaire

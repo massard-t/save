@@ -1,0 +1,16 @@
+a = ["223456","12345"]
+type(a)
+b = ("sfsdf","afasdf")
+type(b)
+b.append(
+"oidjfgoijdspgofi")
+a.append("sodfighosdihjfopias")
+a
+a = 14 + (9 * 2)
+a /3
+pute
+"pute"
+while True:
+print("RAIAINE T MOCH)
+while True:
+    print("RAIANE T MOCH")

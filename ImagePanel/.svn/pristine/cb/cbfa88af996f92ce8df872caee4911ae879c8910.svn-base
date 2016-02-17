@@ -1,0 +1,19 @@
+<?php
+$url = "http://wwww.colorsublime.com";
+$ip = gethostbyname($url);
+var_dump($url == $ip);
+echo $ip;
+if ($url == $ip)
+	exit("unable to find host");
+if (!fopen($url, 'r'))
+	exit("error while opening source");
+echo "works";
+$source = fopen($url, 'r');
+while (!feof($source)) {
+	$contents .= fread($source, 1024);
+}
+echo "yup";
+// $contents = fread($source, filesize($source));
+// var_dump($source);
+// var_dump($contents)
+?>

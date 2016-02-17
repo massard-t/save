@@ -1,0 +1,53 @@
+<?php 
+session_start(); 
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tchat</title>
+        <link rel="stylesheet" href="../../css/chat.css" />
+    </head>
+    <body>
+        <div class="carre">
+            <?php
+                $dtb        = mysqli_connect('localhost', 'bayle_n', 'nono', 'testchat', 2222);
+                $select     = mysqli_query($dtb, 'SELECT Prenom, Message FROM testchat.tchat');
+                while ($donnee = mysqli_fetch_array($select))
+                	{
+                		echo $_SESSION['firstname'] . " : " . $donnee['Message'] . "<br>";		
+                	}
+                ?>
+        </div>
+        <center>
+            <form class="chat" action="change.php" method="post">
+                <input type="text" name="Prenom" placeholder="Prenom">
+                <input type="text" name="Nom" placeholder="Nom">
+                <input type="text" name="dob" placeholder="Date de naissance">
+                <input type="text" name="town_dob" placeholder="Ville de Naissance">
+                <input type="text" name="country" placeholder="Pays">
+                <input type="text" name="phone" placeholder="Numero de telephone">
+                <input type="text" name="pass" placeholder="Mot de Passe">
+                <input type="text" name="mail" placeholder="Email">
+                <input type="text" name="adresse" placeholder="Adresse">
+                <input type="textarea" name="description" placeholder="Description">
+                <input type="text" >
+                <input type="submit" name="send" value="Go!">
+            </form>
+        </center>
+    </body>
+    <?php
+        require "../includes/connectdb.php";
+        unset($dtb);
+        $dtb = mysqli_connect('localhost', 'bayle_n', 'nono', 'data_base', 2222);
+        if ($dtb === false) {
+            echo "error " . mysqli_connect_errno();
+        } else {
+        		$name     = $_SESSION['firstname'];
+        		$msg      = $_POST['msg'];
+        		$query    = "INSERT INTO data_base.tchat(Prenom, Message) VALUES ('" . $name ."','". $msg."');";
+        		$test     = mysqli_query($dtb, $query);
+        	}
+        header("location: ajax_chat.php");
+        ?>
+</html>

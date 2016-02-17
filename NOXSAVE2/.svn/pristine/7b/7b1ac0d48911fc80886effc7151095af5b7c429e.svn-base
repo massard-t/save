@@ -1,0 +1,39 @@
+#!/usr/bin/php
+<?php
+require_once 'main.php';
+require_once 'sorts.php';
+require_once 'errors.php';
+require_once 'functions.php';
+require_once 'test2.php';
+
+$time_start = microtime(true);
+
+$reponse = check_args($argv);
+if ($reponse["continue"] === 1)
+{
+	print_r($reponse);
+	if ($reponse["opt"][0] == "-a")
+		/* acces a la fonction avec juste un mot */
+	else
+	{
+		if ($reponse["opt"][0] == "-r")
+			my_shuffle_file($reponse["params"][0]);
+		if (isset($reponse["opt"][1]))
+		{
+			for ($i=0; $i < $reponse["opt"][1]; $i++)
+			{ 
+				# code... fontion main
+			}
+		}
+		else
+		{
+			for ($i=0; $i < /* IDK */; $i++)
+			{ 
+				# code... fontion main
+			}	
+		}
+	}	
+}
+
+$time_run = microtime(true) - $time_start;
+echo ("Programme terminé en : " . $time_run . "\n");

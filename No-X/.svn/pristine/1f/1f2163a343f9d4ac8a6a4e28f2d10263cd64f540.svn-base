@@ -1,0 +1,19 @@
+<?php
+
+function main($args)
+{
+	$time_start = time(true);
+	// echo $time_start;
+	$time_end = time(true);
+	$time = $time_end - $time_start;
+	// echo "\n".$time."\n";
+	// print_r($args);
+
+	$offset = array_search($args[1], $args);
+	echo "array index: ".$offset."\n".$args[1]."\n";
+	print_r($args);
+	echo "\n\n";
+	swap_array($args[1], $args[2]);
+	print_r($args);
+}
+?>

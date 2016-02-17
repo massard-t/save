@@ -1,0 +1,28 @@
+<?php
+
+function my_main($args, $test)
+{
+	//			CALCUL DU TEMPS
+	//			POUR OPTIMISER CHAQUE ALGORITHME
+	//			NE PAS MODIFIER
+	// $time_start = microtime(true);
+	$content = my_open_file($args[2]);
+	$msg = my_open_file($args[1]);
+	
+	// $content = explode("\n", $content);
+	// $msg = explode("\n", $msg);
+	// print_r($array);
+	
+	// echo $time_start;
+	$content = test($content);	// MODIFICATION DU CONTENU, RECUPERATION DU CONTENU DANS UN TABLEAU
+	// $msg = test($msg);
+	$msg = msgs($msg);
+	$check = "check_print_".$test;
+	$first = $check($content, $msg);
+	return ($time);
+	// exit();
+	$array = quicksortL($array, 1, count($array));
+	$after = $array;
+	var_dump($before == $after);
+}
+?>

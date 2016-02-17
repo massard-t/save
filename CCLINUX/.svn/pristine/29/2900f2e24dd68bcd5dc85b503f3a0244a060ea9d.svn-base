@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style/main.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript" src="js/js.cookie.js"></script>
+		<script type="text/javascript">
+			if (navigator.userAgent.search("Chrome") >= 0)
+			    alert("Attention !\nLe panier ne peut pas fonctionner sous Chrome (Refus par Chrome des cookies stockés en local)\nMerci d'utiliser Firefox !\nNous sommes navrés pour le désagrément\nCordialement,");
+			else if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)
+				alert("Attention !\nLe panier ne peut pas fonctionner entièrement sous Safari (Problèmes de path entrainant des bugs sur le panier)\nMerci d'utiliser Firefox !\nNous sommes navrés pour le désagrément\nCordialement,");
+			var name;
+			if (!(Cookies.get('user'))){
+				name = prompt('Quel est votre pseudo ?');
+				if (name == 'null' || name == '')
+					name = 'User';
+				document.cookie = 'user=' + name + ";domain=;path=/";
+			}
+		</script>
+		<title>Badg'omatic >>> Badge Etna à domicile !</title>
+
+	</head>
+	<body>
+	<div id="header"><ul><li>Badg'omatic</li><li><a href="products/index.html">Produits</a></li><li><a href="index.html" class="currentpage">Homepage</a></li><li><a href="products/promos.html">Promotions !</a></li><li class="panierheader"><a href="products/panier.html">Panier</a><div class="toppanier"><div class="blue"><h2>Panier :</h2></div></div></li></ul></div>
+		<div id="wrapper">
+			<div id="scrollingbar"><marquee>PROMOTIONS EN COURS : <a href="products/minion.html">Badge Minion => 3€</a> | <a href="products/koopa.html">Badge Koopa => 2€</a> | <a href="products/cheepcheep.html">Badge CheepCheep => 2€</a></marquee></div>
+			<div id="slider"><div id="allimages"><a href="products/minion.html"><img src="images/slider/Minion.png" alt="MinionSliderPromo"></a><a href="products/cheepcheep.html"><img src="images/slider/cheep.png" alt="CheepSliderPromo"></a><a href="products/gandalf.html"><img src="images/slider/Gandalf.png" alt="GandalfSliderPromo"></a></div></div>
+			<div id="container">
+			<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
+			<script type="text/javascript" src="js/addcartproduct.js"></script>
+				<h2>Les best Sellers !</h2>
+				<div class="productcontainer">
+					<img src="images/products/Boo.png" alt="product image">
+						<div class="productdata">
+							<h3>Boo</h3>
+							<div class="comment">Votre magasin Badg'omatik vous presente Boo le fantôme, d&eacute;sormais disponible en badge.</div>
+							<div class="price">2,5€</div>
+							<a href="products/boo.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+				<div class="productcontainer">
+					<img src="images/products/Agnes.png" alt="product image">
+						<div class="productdata">
+							<h3>Agnes</h3>
+							<div class="comment">Vous allez craquer en decouvrant le badge Agnes, la mignonne petite fille dans le film Moi, Moche et M&eacute;chant.</div>
+							<div class="price">3€</div>
+							<a href="products/agnes.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+				<div class="productcontainer">
+					<img src="images/products/AquamanVsNamor.png" alt="product image">
+						<div class="productdata">
+							<h3>Aquaman Vs Namor</h3>
+							<div class="comment">Vous ne savez pas qui choisir entre Aquaman et Namor ? Pourquoi ne pas choisir les deux ? C'est possible avec notre badge.</div>
+							<div class="price">3,5€</div>
+							<a href="products/aquamanvsnamor.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+				<h2>Les nouveaut&eacute;s !</h2>
+				<div class="productcontainer">
+					<img src="images/products/Naboo.png" alt="product image">
+						<div class="productdata">
+							<h3>Naboo</h3>
+							<div class="comment">Nouveaut&eacute; et exclusivit&eacute; dans notre magasin Badg'omatik. La planète de l'univers de Star Wars Naboo est maintenant disponible à prix casse.</div>
+							<div class="price">1,5€</div>
+							<a href="products/naboo.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+				<div class="productcontainer">
+					<img src="images/products/DrNefario.png" alt="product image">
+						<div class="productdata">
+							<h3>Dr.Nefario</h3>
+							<div class="comment">L'univers de Moi, Moche et M&eacute;chant s'agrandit ! D&eacute;sormais, vous pouvez trouver le Dr.Nefario dans notre magasin.</div>
+							<div class="price">3€</div>
+							<a href="products/drnefario.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+				<div class="productcontainer">
+					<img src="images/products/Gimli.png" alt="product image">
+						<div class="productdata">
+							<h3>Gimli</h3>
+							<div class="comment">Vous vous sentez petit ? Avec le badge Gimli, votre petitesse ne vous fera plus defaut.</div>
+							<div class="price">2,5€</div>
+							<a href="products/gimli.html"><div class="buybutton">More...</div></a>
+						</div>
+				</div>
+			</div>
+			<div class="sidebar">
+				Hello  <font id="user" onload='username()'>User</font> !
+			</div>
+			<div class="sidebar">
+				<hr>
+				<a href="products/compte.html">Mon compte</a>
+				<hr>
+				<a href="#" class="notlinked">Mes commandes</a>
+				<hr>
+				<a href="#" class="notlinked">Mes factures</a>
+				<hr>
+				<a href="#" class="notlinked">Destockage</a>
+				<hr>
+				<a href="products/inscription.html">S'inscrire</a>
+				<hr>
+			</div>
+ 		</div>
+ 		<script type="text/javascript"></script>
+		<div id="footer">
+			<div id="magasin">
+				Notre magasin le plus proche:<br>
+				<img src="images/staticmap.png" alt="carte du magasin le plus pres">
+			</div>
+			<div id="copyright">
+				<br><br>
+				Copyright 2015<br>
+				Shinra Corp<br>
+				Antoine MARTIN<br>
+				Laurent GONNET<br>
+				<br>
+				<a href="products/mentions.html">Mentions l&eacute;gales</a>
+			</div>
+			<div id="links">
+			<br>
+			<hr>
+			<a href="#header">Retour en haut</a>
+			<hr>
+			<a href="products/cgv.html" onload="username();">Conditions g&eacute;n&eacute;rales de vente</a>
+			<hr>
+			<a href="products/contact.html" onload="warningload()">Nous contacter</a>
+			<hr>
+			</div>
+		</div>
+	</body>
+</html>

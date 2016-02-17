@@ -1,0 +1,80 @@
+<?php
+
+function cleandata($data)
+{
+	echo "cleandata\n";
+	// print_r($data);
+	$i = 0;
+	while (isset($data[$i])) {
+		if (!(preg_match("/(height=\".+?\"|width=\".+?\"|src=\".+?\")/", $data[$i])))
+			unset($data[$i]);
+		$i++;
+		}
+	return ($data);
+}
+function img_to_resource($path, $value)
+{
+
+}
+
+function check_absolute($source, $url)
+{
+	$i = 0;
+	// print_r($source);
+	var_dump($url);
+	// print_r($source);
+	while (isset($source[$i])) {
+		if (preg_match("/http[s]?:\/\//", $source[$i][1])) {
+			preg_match("/src=\"(.+?)\"/", $source[$i][1], $source[$i]);
+			echo $source[$i][1]."\n";
+			$source[$i] = $source[$i][1];
+		}
+		else {
+			// $url = preg_replace("\w+://\w+.\w+", "", $url);
+			// var_dump($url);
+			$tmp = parse_url($url);
+			$source[$i] = $tmp["scheme"]."://".$tmp["host"].substr($source[$i][1], 1);
+			// return($location);
+			echo $source[$i][1]."\n";
+		}
+		echo "$source[$i]\n";
+		$i++;
+	}
+	echo "sources trouvees\n";
+	return (get_type($source));
+}
+
+function get_type($source)
+{
+	$choices = [IMAGETYPE_GIF 	=> "gif", 
+				IMAGETYPE_JPEG 	=> "jpg",
+				IMAGETYPE_PNG 	=> "png",
+				IMAGETYPE_BMP 	=> "bmp",
+				IMAGETYPE_WBMP 	=> "wbmp",
+				IMAGETYPE_XBM 	=> "xbm"];
+	echo "wtf\n";
+	$i = 0;
+	while (isset($source[$i])) {
+		var_dump($source[$i]);
+		if (check_host($source[$i])) {
+			foreach ($choices as $key => $value) {
+				echo "avant exif\n";
+				if (seekable($source[$i])) {
+					if (exif_imagetype($source[$i]) == $key)
+						echo "hey\n";
+							// return("$value\n");
+				}
+			}
+		}
+		echo $i++;
+	}
+	echo "fini\n";
+	return(false);
+}
+
+function seekable($url) {
+	$meta = stream_get_meta_data($url);
+	echo $meta['seekable'];
+	return $meta['seekable'];
+}
+?>

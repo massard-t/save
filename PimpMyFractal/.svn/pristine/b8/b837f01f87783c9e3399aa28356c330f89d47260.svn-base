@@ -1,0 +1,55 @@
+<?php
+class matrix
+{
+	var $cols;
+	var $rows;
+	var $x;
+	var $y;
+	var $evaled;
+
+	function __construct($length, $rows, $n, $k, $fill=0)
+	{
+		if (is_numeric($length) && ($length > 0)){
+			if (is_numeric($rows) && ($rows > 0)) {
+				$this->cols = $length;
+				$this->rows = array();
+				for ($i=0; $i < $rows; $i++) {
+					$row = array_fill(0, $length, $fill);
+					$this->rows[$i] = $row;
+				}
+				$this->assign($n, $k);
+				$this->x = count($this->rows);
+				$this->y = $this->cols;
+				// echo $this->x . $this->y;
+				// exit();
+			} else
+			return (false);
+		} else
+			return (false);
+	}
+
+	function assign($n, $k)
+	{
+		for ($y=0; $y <= $this->cols; $y++) {
+			$size_array = count($this->rows);
+			for ($x=0; $x <= $size_array; $x++) {
+				$this->rows[$y][$x] = new complex(($x/100), ($y/100), $n, $k);
+
+			}
+		}
+	}
+
+	function display()
+	{
+		for ($y=1; $y <= $this->cols; $y++) {
+			$size_array = count($this->rows);
+			for ($x=1; $x < $size_array; $x++) {
+				// echo $y." ".$x."\n";
+				var_dump($this->rows[$y][$x]);
+				// echo $this->rows[$y][$x]->aff_simple();
+			}
+			echo "<br>";
+		}
+	}
+}
+?>

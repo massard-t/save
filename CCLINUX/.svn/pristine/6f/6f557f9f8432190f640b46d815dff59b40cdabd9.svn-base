@@ -1,0 +1,11 @@
+#!/usr/bin/python3.4
+# import shutil
+import os.path
+import time
+
+
+src = os.path.expanduser("~")
+dest = src
+# shutil.copytree(src, (dest + "/bankito/" + str(int(time.time()))), True)
+print("1")
+time.sleep(1)

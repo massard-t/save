@@ -1,0 +1,46 @@
+#!/usr/bin/python3.4
+from uuid import getnode
+import os
+import time
+import re
+import sys
+import hashlib
+
+
+
+
+
+def get_unix_time():
+    t = time.time()
+    time_form = re.compile(r"(\d+).?\d*")
+    cur_time = time_form.findall(str(t))
+    if cur_time is None:
+        print(t)
+        sys.exit(0)
+    ret = cur_time[0]
+    return (ret)
+
+
+def get_mac():
+    mac = getnode()
+    ret = str(mac)
+    return (ret)
+
+
+def aff():
+    print("Hi, welcome to Bankito.")
+    path = os.path.dirname(os.path.realpath(__file__))
+    print(path)
+    print(get_unix_time())
+    print(get_mac())
+    # get_mac()
+    pass
+
+
+def main():
+    aff()
+    return (1)
+
+
+if __name__ == '__main__':
+    main()

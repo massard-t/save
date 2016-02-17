@@ -1,0 +1,43 @@
+<?php
+function create_img($base) {
+	$test = array (
+		"0" => array (
+				"photo0.jpeg" => imagecreatefromjpeg("photo (0).jpeg") 
+			),
+		"1" => array (
+				"photo1.jpeg" => imagecreatefromjpeg("photo (1).jpeg") 
+			),
+		"2" => array (
+				"photo2.jpeg" => imagecreatefromjpeg("photo (2).jpeg") 
+			),
+		"3" => array (
+				"photo3.jpeg" => imagecreatefromjpeg("photo (3).jpeg") 
+			),
+		"4" => array (
+				"photo4.jpeg" => imagecreatefromjpeg("photo (4).jpeg") 
+			),
+		"5" => array (
+				"photo5.jpeg" => imagecreatefromjpeg("photo (5).jpeg") 
+			)
+	);
+
+	$panel = imagecreatetruecolor(1200, 960);
+
+	$x = 0;
+	$y = 0;
+
+	for ($i = 0; $i < count($test); $i++) {
+		$key = array_keys($test[$i]);
+		imagecopyresized($img, $test[$i][$key[0]], $x, $y, 0, 0, imagesx($test[$i][$key[0]]), imagesy($test[$i][$key[0]]));
+		imagecopy($panel, $img, $x, $y, 0, 0, imagesx($img), imagesy($img));
+		$x += imagesx($test[$i][$key[0]]);
+		if ($x == 1200) {
+			$x = 0;
+			$y += imagesy($test[$i][$key[0]]);
+		}
+	}
+
+	imagejpeg($panel, $base);
+	imagedestroy($panel);
+}
+?>

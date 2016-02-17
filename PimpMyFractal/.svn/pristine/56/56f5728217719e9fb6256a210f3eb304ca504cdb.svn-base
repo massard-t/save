@@ -1,0 +1,10 @@
+<?php
+$length = 30;
+$rows = 20;
+$iter = 10;
+$degree = 20;
+require_once 'matrix.php';
+require_once 'small_framework.php';
+$matrice = new matrix($length, $rows, $iter, $degree);
+$matrice->display();
+require_once 'image.php';

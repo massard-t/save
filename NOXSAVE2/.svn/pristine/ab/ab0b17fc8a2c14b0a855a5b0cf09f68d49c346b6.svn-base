@@ -1,0 +1,18 @@
+<?php
+
+
+function quicksortL($array, $lo, $hi)
+{
+	if ($lo < $hi) {
+		$p = partitionL($array, $lo, $hi);
+	}
+	quicksortL($array, $lo, $hi);
+}
+
+function partitionL($array, $lo, $hi)
+{
+	$piv = $array[$hi];
+
+}
+
+?>

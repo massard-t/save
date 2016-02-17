@@ -1,0 +1,24 @@
+<?php
+echo "IMAGE EN COURS !";
+
+$mdr = imagecreatetruecolor (300,200);
+
+$x = 0;
+$y = 0;
+while (++$y <= 200) {
+	while (++$x <= 300){
+		echo $x;
+		if ($y % 3 == 0)
+			$color = imagecolorallocate($mdr, $x, rand (0,255), $y);
+		else if ($y % 2 == 0)
+			$color = imagecolorallocate($mdr, rand (0,255), $y, $x);
+		else
+			$color = imagecolorallocate($mdr, $y, $x, rand (0,255));
+		imagesetpixel ($mdr, $x, $y, $color);
+	}
+	$x = 0;
+}
+imagepng ($mdr , "images/tamer.png");
+
+imagedestroy($mdr);
+?>

@@ -1,0 +1,45 @@
+<?php
+require_once 'main.php';
+require_once 'sorts.php';
+require_once 'errors.php';
+require_once 'functions.php';
+require_once 'test2.php';
+
+$max = $argv[3];
+$i = 0;
+$time = 0;
+$time_start_fe = microtime(true);
+while ($i < $max) {
+	$time = $time + my_main($argv, "fe");
+	$i++;
+}
+$time_end_fe = microtime(true);
+echo 'Fe done',"\n";
+$i = 0;
+$time_start_wi = microtime(true);
+while ($i < $max) {
+	$time = $time + my_main($argv, "wi");
+	$i++;
+}
+$time_end_wi = microtime(true);
+echo 'Wi done',"\n";
+$i = 0;
+$time_start_fi = microtime(true);
+while ($i < $max) {
+	$time = $time + my_main($argv, "fi");
+	$i++;
+}
+echo 'Fi done',"\n";
+$time_end_fi = microtime(true);
+echo '--------------- time while: ',(($time_end_wi - $time_start_wi)/($max)),"\n";
+echo '--------------- time for  : ',(($time_end_fe - $time_start_fe)/($max)),"\n";
+echo '--------------- time fi   : ',(($time_end_fi - $time_start_fi)/($max)),"\n";
+echo $time / $max ,"\n";
+$fe = $time_end_fe - $time_start_fe;
+$wi = $time_end_wi - $time_start_wi;
+var_dump($fe > $wi);
+// echo ($time_end_wi - $time_start_wi) >
+echo "\n".$time_end - $time_start."\n";
+?>
+
+FE > WI

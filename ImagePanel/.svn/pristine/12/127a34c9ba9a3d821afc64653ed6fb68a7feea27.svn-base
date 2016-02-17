@@ -1,0 +1,101 @@
+<?php
+
+function file_or_url($target)
+{
+	echo $target;
+	var_dump(valid_url($target));
+	if (valid_url($target))
+		return (true);
+	elseif (file_exists($target)) {
+		if (!is_dir($target)){
+			if (is_readable($target)) {
+				return (false);
+			} else {
+				exit("Error: File is not readable.\n");
+			}
+		} else {
+			exit("Error: File is a directory.\n");
+		}
+	} else {
+		exit("Error: File doesn't exists.\n");
+	}
+}
+function valid_url($url)
+{
+	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+	    return (true);
+	} else {
+		return (false);
+	}
+}
+
+function check_host($url)
+{
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_NOBODY, true);
+	$result = curl_exec($curl);
+	if ($result !== false)
+	{
+	  $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+	  if ($statusCode == 404)
+	  	return (false);
+	  else
+	  	return (true);
+	}
+	else
+		return (false);
+}
+
+function get_content_url($url)
+{
+	var_dump($argv);
+	if (file_or_url($url)) {
+		if (!(check_host($url)) AND !(file_exists($url)))
+			exit("\nError: Couldn't resolve host address.\n");
+		$ip = gethostbyname($url);
+		if (!(get_headers($url)) AND !(file_exists($url)))
+			exit("\nError: Couldn't fetch headers.\n");
+		$headers = get_headers($url);
+		if (!(in_array("HTTP/1.1 200 OK", $headers)))
+			exit("\nError: Host did not answer in a mannered way.\n");
+		if (!fopen($url, 'r'))
+			exit("\nError: Unable to read file.\n");
+		$source = fopen($url, 'r');
+		while (!feof($source)) {
+			$contents .= fread($source, 1024);
+		}
+		echo "\nAccess to host granted. Source code acquired.\n";
+		get_images($contents, $url);
+	}
+}
+// (height=".+?"|width=".+?")
+function get_images($source, $url)
+{
+	echo $url."\n\n\n";
+	$images = array();
+	$source = strtolower($source);
+	preg_match_all("/<img(.+?)>/", $source, $data);
+	$source = $data[1];
+	foreach ($source as $imgtag)
+			$imgtag = preg_split("/ /", $imgtag);
+	$i = 0;
+	while (isset($source[$i])) {
+		preg_match_all("/src\s*=\s*\"(.+?)\"/", $source[$i], $source[$i]);
+		$source[$i] = $source[$i][1];
+		$i++;
+	}
+	$i = 0;
+	$j = 0;
+	// preg_match_all("/img src\s*=\s*\"(.+?)\"/", $tmp, $imgs);
+	while (isset($data[1][$i]))
+			$result[$j++] = preg_split("/ /", $data[1][$i++]);
+	$i = 0;
+	$j = 0;
+	while (isset($result[$i]))
+		$infos[$j++] = cleandata($result[$i++]);
+	echo "\nclean termine\n";
+	$final = check_absolute($infos, $url);
+}
+
+// get_content_url($argv[1]);
+?>

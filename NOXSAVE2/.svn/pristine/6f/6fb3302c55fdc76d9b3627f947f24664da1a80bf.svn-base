@@ -1,0 +1,32 @@
+#!/usr/bin/php
+<?php
+require_once 'main.php';
+require_once 'sorts.php';
+require_once 'errors.php';
+require_once 'functions.php';
+require_once 'test2.php';
+
+$time_start_fe = microtime(true);
+$max = $argv[3];
+$time = 0;
+
+$reponse = check_args($argv);
+if ($reponse["continue"] === 1)
+{
+	echo "string";
+	// for($i = 0; $i < $max; $i++)
+	// {
+	// 	$time = $time + my_main($argv, "fe");
+	// }
+	// $time_end_fe = microtime(true);
+	// $time_start_wi = microtime(true);
+	// for ($i = 0; $i < $max; $i++)
+	// {
+	// 	$time = $time + my_main($argv, "wi");
+	// }
+}
+
+$time_end_wi = microtime(true);
+echo $time / 100 ."\n";
+echo $time_end - $time_start."\n";
+// my_shuffle_file($argv[1]);

@@ -1,0 +1,15 @@
+<?php
+$headers = get_headers("http://colorsublime.com/");
+if (!preg_match("/200 OK/", $headers[0]))
+	exit("couldn't open url");
+if (!fopen("http://colorsublime.com/", 'r'))
+	exit("error while opening source");
+echo "works";
+$source = fopen("http://colorsublime.com/", 'r');
+while (!feof($source)) {
+	$contents .= fread($source, 1024);
+}
+// $contents = fread($source, filesize($source));
+// var_dump($source);
+// var_dump($contents)
+?>

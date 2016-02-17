@@ -1,0 +1,35 @@
+<?php
+
+function my_swap_array(&$a, &$b)
+{
+	$tmp = $a;
+	$a = $b;
+	$b = $tmp;
+}
+
+function my_open_file($filename)
+{
+	$handle = fopen($filename, 'r');
+	$content = fread($handle, filesize($filename));
+	fclose($handle);
+	return ($content);
+}
+
+function my_shuffle_file($filename)
+{
+	$handle = fopen($filename, 'r');
+	$content = fread($handle, filesize($filename));
+	fclose($handle);
+	$content = explode("\n", $content);
+	
+	shuffle($content);
+	// var_dump($content);
+	
+	$handle = fopen($filename."txt", 'w+');
+	$i = 0;
+	while (isset($content[$i])) {
+		// echo $content[$i]."\n";
+		fwrite($handle, $content[$i++]."\n");
+	}
+	fclose($handle);
+}

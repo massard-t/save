@@ -1,0 +1,9 @@
+<?php
+$i = 1;
+$x = $argv[$i++]; // 300
+$y = $argv[$i++]; // 200
+$iter = $argv[$i++]; // n
+$degree = $argv[$i++]; // k
+require_once 'matrix.php';
+require_once 'small_framework.php';
+$matrice = create_matrix($x, $y, $iter, $degree);

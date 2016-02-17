@@ -1,0 +1,17 @@
+<?php
+if ($argc >= 3) {
+	if ($argv[1][0] == "-") {
+		preg_match_all("([gjlnNps])", $argv[1], $options);
+		$argc--;
+		if ($argc >= 3) {
+	 		//appel function argument: $argv[2] + $argv[3]
+		} else {
+			echo "Syntax error: php imagepanel.php [options] lien1 [lien2 [...]] base\n";
+		}
+	} else {
+		//appel function argument: $argv[1] + $argv[2]
+	}
+} else {
+	echo "Syntax error: php imagepanel.php [options] lien1 [lien2 [...]] base\n";
+}
+?>

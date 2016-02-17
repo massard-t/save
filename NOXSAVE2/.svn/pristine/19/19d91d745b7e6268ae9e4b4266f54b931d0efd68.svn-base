@@ -1,0 +1,13 @@
+<?php
+$string = $argv[1];
+function create_array($string, $array=[]){
+	echo ord($string[0])."\n";
+	print_r($array);
+	if (!isset($string[1]))
+		return ($array);
+	else
+		$array[ord(substr($string, 0,1))-ord('a')] = create_array(substr($string, 1), $array);
+	return ($array);
+}
+print_r(create_array($string));
+?>

@@ -1,0 +1,31 @@
+<?php
+
+function my_main($args)
+{
+	$content = my_open_file($args[1]);
+	$array = explode("\n", $content);
+	// print_r($array);
+	$time_start = time(true);
+	// echo $time_start;
+	$time_end = time(true);
+	$time = $time_end - $time_start;
+	$before = $array;
+	// var_dump($array);
+	// exit();
+	$array = quicksortL($array, 1, count($array));
+	$after = $array;
+	var_dump($before == $after);
+	// echo "\n".$time."\n";
+	// print_r($args);
+
+	// $offset = array_search($args[1], $args);
+	
+
+	// echo "array index: ".$offset."\n".$args[1]."\n";
+	// print_r($args);
+	// echo "\n\n";
+
+	// my_swap_array($args[1], $args[2]);
+	// print_r($content);
+}
+?>

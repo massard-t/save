@@ -1,0 +1,22 @@
+<?php
+function img_to_resource($path, $value)
+{
+
+}
+
+function get_type($source)
+{
+	$choices = [IMAGETYPE_GIF 	=> "gif", 
+				IMAGETYPE_JPEG 	=> "jpg",
+				IMAGETYPE_PNG 	=> "png",
+				IMAGETYPE_BMP 	=> "bmp",
+				IMAGETYPE_WBMP 	=> "wbmp",
+				IMAGETYPE_XBM 	=> "xbm"];
+	foreach ($choices as $key => $value) {
+		if (exif_imagetype($source) == $key)
+			return("hey $value\n");
+	}
+	return(false);
+}
+
+?>

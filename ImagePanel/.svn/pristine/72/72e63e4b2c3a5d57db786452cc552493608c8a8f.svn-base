@@ -1,0 +1,79 @@
+#!/usr/bin/php
+<?php
+require_once 'get_resources.php';
+function valid_url($url)
+{
+	if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+	    check_host($url);
+	} else {
+	    exit("url not valid");
+	}
+}
+
+function check_host($url)
+{
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_NOBODY, true);
+	$result = curl_exec($curl);
+	if ($result !== false)
+	{
+	  $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+	  if ($statusCode == 404)
+	  	return false;
+	  else
+	  	return true;
+	}
+	else
+		return false;
+}
+
+function get_content_url($url)
+{
+	var_dump(check_host($url));
+	if (!check_host($url))
+		exit("couldnt find host");
+	$ip = gethostbyname($url);
+	if (!(get_headers($url)))
+		exit("unable to find host because headers\n");
+	$headers = get_headers($url);
+	if (!(in_array("HTTP/1.1 200 OK", $headers)))
+		exit("unable to find host2\n");
+	if (!fopen($url, 'r'))
+		exit("error while opening source\n");
+	$source = fopen($url, 'r');
+	while (!feof($source)) {
+		$contents .= fread($source, 1024);
+	}
+	echo "worked\n";
+	get_images($contents, $url);
+}
+
+function check_absolute($source, $url)
+{
+	if (preg_match("/http[s]?:\/\//", $source))
+		return $source;
+	else {
+		// $url = preg_replace("\w+://\w+.\w+", "", $url);
+		$url = parse_url($url);
+		$location = $url["scheme"]."://".$url["host"].substr($source, 1);
+		echo $location."\n";
+	}
+}
+
+function get_images($source, $url)
+{
+	echo $url."\n\n\n";
+	preg_match_all("/img src\s*=\s*\"(.+?)\"/", $source, $imgs);
+	// var_dump($imgs[1]);
+	foreach ($imgs[1] as $element) {
+		check_absolute($element, $url);
+		// var_dump($element);
+	}
+}
+
+// var_dump($argv[1]);
+get_content_url($argv[1]);
+	// $contents = fread($source, filesize($source));
+	// var_dump($source);
+	// var_dump($contents)
+?>

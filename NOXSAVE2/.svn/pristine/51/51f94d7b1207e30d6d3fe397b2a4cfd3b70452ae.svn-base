@@ -1,0 +1,8 @@
+<?php
+function swap_array(&$a, &$b)
+{
+	$tmp = $a;
+	$a = $b;
+	$b = $tmp;
+}
+?>

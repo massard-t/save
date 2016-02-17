@@ -1,0 +1,9 @@
+<?php
+require_once 'main.php';
+require_once 'sorts.php';
+require_once 'errors.php';
+require_once 'functions.php';
+my_main($argv);
+// my_shuffle_file($argv[1]);
+
+?>

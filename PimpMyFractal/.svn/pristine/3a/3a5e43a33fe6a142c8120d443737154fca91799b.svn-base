@@ -1,0 +1,10 @@
+<?php
+$x = 3;
+$c = 2;
+$v = 10;
+$b = 20;
+require_once 'matrix.php';
+require_once 'small_framework.php';
+$matrice = new matrix($x, $c, $v, $b);
+// var_dump($matrice);
+require_once 'image.php';

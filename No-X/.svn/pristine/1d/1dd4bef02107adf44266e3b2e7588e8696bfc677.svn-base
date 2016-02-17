@@ -1,0 +1,10 @@
+<?php
+function main($args)
+{
+	$time_start = microtime(true);
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+
+	print_r($args);
+}
+?>

@@ -1,0 +1,68 @@
+<?php
+function test($dic)
+{
+	$res = [];
+	$i = 0;
+	// preg_match_all("/\S+[.-]?\S+/", $dic, $tmp);
+	$tmp = explode("\n", $dic);
+	// var_dump($tmp[0]);
+	// exit();
+	while ($tmp[0][$i]) {
+		$res[$tmp[0][$i]] = 1;
+		$i++;
+	}
+	// var_dump($res);
+	// exit();
+	return ($res);
+}
+
+function msgs($msg)
+{
+	// preg_match_all("/\S+[.-]?\S+/", $msg, $tmp);
+	$tmp = explode(" ", $msg);
+	return ($tmp);
+}
+
+function check_print_fe($dic, $msg)
+{
+	// echo "y";
+	$i = 0;
+	// print_r($msg);
+	// var_dump($msg);
+	// exit();
+	$res = 0;
+	foreach ($msg as $word) {
+		if ($dic[$word])
+			$res++;
+			// echo $word."\n";
+	}
+	// while ($msg[0][$i]) {
+	// 	// echo $dic[$msg[$i]];
+	// 	if ($dic[$msg[0][$i]])
+	// 		echo $msg[0][$i]."\n";
+	// 	$i++;
+	// }
+	return ($res);
+}
+function check_print_wi($dic, $msg)
+{
+	// echo "y";
+	$i = 0;
+	print_r($msg);
+	// var_dump($msg);
+	// exit();
+	// foreach ($msg as $word) {
+	// 	if ($dic[$word])
+	// 		$res++;
+	// 		// echo $word."\n";
+	// }
+	while ($msg[$i]) {
+		// echo $dic[$msg[$i]];
+		if ($dic[$msg[$i]])
+			$res++;
+			// echo $msg[0][$i]."\n";
+		$i++;
+	}
+	return ($res);
+}
+?>

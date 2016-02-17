@@ -1,0 +1,24 @@
+import requests
+import sys
+import hashlib
+
+
+def md5(filename):
+    hash = hashlib.md5()
+    with open(filename, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash.update(chunk)
+    with open(filename, "rb") as f:
+    	content = f.read()
+    return (hash.hexdigest(), content)
+
+
+def send_file(filename):
+    md, content = md5(filename)
+    print(content)
+    r = requests.post("URL_DU_SITE",  files=content)
+    print(r.content)
+
+
+if __name__ == '__main__':
+    send_file(sys.argv[1])

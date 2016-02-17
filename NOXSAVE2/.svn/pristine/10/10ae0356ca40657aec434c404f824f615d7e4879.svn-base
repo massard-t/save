@@ -1,0 +1,43 @@
+<?php
+function my_open_file($filename)
+{
+	$handle = fopen($filename, 'r');
+	$content = fread($handle, filesize($filename));
+	fclose($handle);
+	return ($content);
+}
+
+function my_shuffle_file($filenames)
+{
+	foreach ($filenames as $filename) {
+		$handle = fopen($filename, 'r');
+		$content = fread($handle, filesize($filename));
+		fclose($handle);
+		$content = msgs_to_word($content);
+		shuffle($content);
+		$handle = fopen($filename."_shuffled.txt", 'w+');
+		$i = 0;
+		while ($content[$i]) {
+			fwrite($handle, $content[$i++]."\n");
+		}
+		fclose($handle);
+		echo "$filename got shuffled. The shuffled $filename is now ".$filename."_shuffled.txt.\nNice job!.\n";
+	}
+}
+
+function help()
+{
+	echo "Welcome Agent No-X.\nThe current options are:\n
+	-r \t\tLet me shuffle the content of your files.\n
+	./nox.php -r file1 [file2[file3[...]]]\n
+	--silent-job \t\tTime will be the only witness.\n
+	./nox.php --silent-job dictionnary message\n
+	--alfred\t\tGlad to see you again, my fellow Mr. No-X.\n
+	./nox.php --alfred\n";
+}
+
+function alfred()
+{
+	# code...
+}
+?>

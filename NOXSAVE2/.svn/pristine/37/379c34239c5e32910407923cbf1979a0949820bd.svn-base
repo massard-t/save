@@ -1,0 +1,39 @@
+<?php
+
+
+function quicksortL($array, $lo, $hi)
+{
+	echo $array;
+	echo "\n $lo  $hi";
+	// exit();
+	// echo $lo." ".$hi;
+	
+	if ($array[$lo] < $array[$hi]) {
+		// var_dump($)
+		echo "\n $lo  $hi";
+		$p = partitionL($array, $lo, $hi);
+		quicksortL($array, $lo, $hi);
+		quicksortL($array, $lo, $hi);
+	}
+	return($array);
+}
+
+function partitionL($array, $lo, $hi)
+{
+	$piv = $array[$hi];
+	$i = $lo;
+	for ($j = $lo; $j <= $hi - 1; $j++)
+	{
+		if ($array[$j] <= $piv) {
+			my_swap_array($array[$hi], $array[$j]);
+			$i++;
+		}
+	}
+	// my_swap_array($array[$i], $array[$hi]);
+	$tmp = $array[$i];
+	$array[$i] = $array[$hi];
+	$array[$hi] = $tmp;
+	return $i;
+}
+
+?>

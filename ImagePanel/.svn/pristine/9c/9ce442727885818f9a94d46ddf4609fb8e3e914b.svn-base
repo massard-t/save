@@ -1,0 +1,7 @@
+<?php
+if ($argc >= 3) {
+	var_dump($argv);
+} else {
+	echo "Syntax error: php imagepanel.php [options] lien1 [lien2 [...]] base\n";
+}
+?>

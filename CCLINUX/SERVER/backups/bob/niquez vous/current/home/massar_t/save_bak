@@ -1,0 +1,11 @@
+{
+    "infos":
+    {
+	"username":"bob",
+	"password":"aee4bd941f8b4d9e39210c06c44fcb71"
+    },
+    "server":
+    {
+	"bakito":"http://92.222.227.175:1234/main.php"
+    }
+}

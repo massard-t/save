@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Pimp my Fractale</title>
+        <link href="Pimp%20my%20Fractale_fichiers/sujet-html.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Pimp my Fractale</h1>
+        <div class="notice">
+            <p><b>Dossier de rendu </b>: https://rendu-svn.etna-alternance.net/v2/2020_Prep'ETNA_CMG-MAT1_3_0-1534/Pimp my fractale/martin_e</p>
+            <p><b>Langage </b>: PHP, JS, HTML, CSS</p>
+        </div>
+        <h2>Notions</h2>
+        <div>
+            <p>
+                Vous savez maintenant manipuler les nombres complexes et
+ les placer sur un plan complexe, en fonction de leurs parties réelles 
+et imaginaires. Nous allons revoir plusieurs notions liées aux nombres 
+complexes et les appliquer dans un projet un peu plus axé sur le 
+graphisme. Il portera sur les <a href="https://fr.wikipedia.org/wiki/Fractale">fractales</a>.
+            </p>
+            <p>
+                Quel est le rapport entre les fractales et les nombres 
+complexes (qui sont censés être un ensemble de nombres "abstrait") me 
+direz-vous ? Et bien, cela va nous permettre de générer des fractales 
+dans un plan. S'il existe différentes sortes de fractales, nous allons 
+nous concentrer sur une sorte, <b>les fractales de Mandelbrot</b>. Un peu comme ceci :
+            </p>
+            <img src="Pimp%20my%20Fractale_fichiers/mandelset.png">
+            <p>
+                La grosse forme qui ressemble presque à un cercle est 
+appelée cardioïde. Comme vous pouvez le voir, le cercle à gauche de la 
+cardioïde est lui-même entouré de cercles de différentes tailles et cela
+ se répète tout au long de la fractale de manière infinie. Et si vous 
+zoomez :
+            </p>
+            <img src="Pimp%20my%20Fractale_fichiers/mandelbrot_zoom.gif">
+            <p>
+                L'ensemble de Mandelbrot de degré k est une fractale qui
+ est définie comme l'ensemble des points c du plan complexe pour 
+lesquels la suite récurrente définie par Z<sub>n+1</sub> = Z<sub>n</sub><sup>k</sup> + c et la condition Z<sub>0</sub> = 0 ne tend pas vers l'infini (en module).
+                <b>En réalité, ce genre de calcul est bien compliqué 
+pour nos têtes et pour notre pauvre ordinateur et donc, nous avons 
+seulement besoin de tester si le module de Z<sub>n</sub> dépasse 2 à un moment. S'il ne le dépasse pas, c'est qu'il fait partie de la fractale.</b>
+            </p>
+        </div>
+        <br><br><br>
+        <h2>De quoi a-t-on besoin ?</h2>
+        <p><i>
+            - Waaaa c'est un ouf le prof !<br>
+            - Mais grave... De quoi il parle ?? Plan complexe, fractales, vers l'infini en module. <br>
+            - C'est mort, moi j'fais pas ce projet...<br>
+            - Faut lui dire c'est plus la maternelle ! C'est pas une UE coloriage ziva.<br>
+        </i></p>
+        <br><br>
+        <div>
+            Il vous faut des pré-recquis pour débuter ce projet :
+            <ul>
+                <li>Les cours sur les nombres complexes</li>
+                <li>Le cours sur les suites numériques</li>
+                <li>Savoir créer une interface Web</li>
+                <li>Savoir utiliser la librairie GD (oui, souvenir d'Image Panel), afin de générer la fractale</li>
+            </ul>
+        </div>
+        <div class="warning">
+            Générer une fractale demande beaucoup de resources.<br>
+            Imaginez que vous génériez une balise par pixel, et que vous
+ mettiez ça dans un fichier HTML... Il est donc fortement recommandé de 
+générer une image plutôt. Heureusement, vous savez - grâce au projet 
+ImagePanel - créer des images. Servez-vous en !
+        </div>
+        <br><br><br>
+        <h2>Que faut-il faire ?</h2>
+        <div class="notice">
+            L'ensemble de Mandelbrot de degré k est une fractale qui est
+ définie comme l'ensemble des points c du plan complexe pour lesquels la
+ suite récurrente définie par Z<sub>n+1</sub> = Z<sub>n</sub><sup>k</sup> + c et la condition Z<sub>0</sub> = 0 ait un module qui ne dépasse pas 2.
+        </div>
+        Le but du projet sera de créer une interface Web qui pourra 
+créer une fractale de Mandelbrot sous forme d'image. Votre interface 
+proposera une formulaire qui aura les champs suivants :
+        <ul>
+            <li>"Nombre d'itération" : le nombre n maximum de la suite Z<sub>n</sub>. Par défaut, c'est-à-dire en l'absence de valeurs, ce champs aura pour valeur 50.</li>
+            <li>"Degré" : correspond au degré k auquel sera porté la suite Z<sub>n</sub> pour chaque itération. Par défaut, ce champs aura pour valeur 2. </li>
+        </ul>
+
+        Le bouton "Valider" permettra alors de générer une image de la 
+fractale par la librairie gd et de l'afficher sur votre interface.<br><br><br><br>
+        <h2>Exemples</h2>
+        <div>
+            Vous constaterez 2 choses en manipulant n et k :
+            <ul>
+                <li>Plus n sera grand, plus la fractale sera "précise".</li>
+                <li>Plus k sera grand, plus il y aura de ramifications.</li>
+            </ul>
+        </div>
+        <div>
+            Vous trouverez en dessous des exemples de fractales avec différents nombres d'itération et degrés
+        </div>
+        <div class="notice">
+            Exemples de fractales de Mandelbroot de différents degrés et nombres d'itérations<br>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d3_i20.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 3<sup>ème</sup> degré<br>20 itérations</small>
+            </div>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d7_i20.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 7<sup>ème</sup> degré<br>20 itérations</small>
+            </div>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d10_i20.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 10<sup>ème</sup> degré<br>20 itérations</small>
+            </div>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d2_i7.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 2<sup>nd</sup> degré<br>7 itérations</small>
+            </div>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d3_i5.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 3<sup>ème</sup> degré<br>5 itérations</small>
+            </div>
+            <div style="width: 200px; height: 220px; display: inline-block;">
+                <img src="Pimp%20my%20Fractale_fichiers/mandelbroot_d4_i5.jpg" width="200">
+                <small style="display: inline-block; width: 200px; text-align: center;">Fractale de Mandelbroot 4<sup>ème</sup> degré<br>5 itérations</small>
+            </div>
+        </div>
+        <div>
+            <p>Bon courage !</p>
+        </div>
+    
+
+</body></html>
